@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Изменить товар</title>
-  <link rel="stylesheet" th:href="|@{/main.css}|">
+  <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
-<div th:replace="/layouts/header :: header"></div>
+<div th:replace="~{/layouts/header :: header}"></div>
 
 <main class="container">
   <h1>Изменить товар</h1>
@@ -19,6 +19,6 @@
   </form>
 </main>
 
-<div th:replace="/layouts/footer :: footer"></div>
+<div th:replace="~{/layouts/footer :: footer}"></div>
 </body>
 </html>

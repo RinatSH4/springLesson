@@ -23,6 +23,7 @@ public class WebSecurityConfig {
         http
                 .authorizeHttpRequests((requests) -> requests
                         .requestMatchers("/item/add", "/item/*/update", "/item/*/delete", "/user").authenticated()
+                        .requestMatchers("/admin").hasRole("ADMIN")
                         .requestMatchers("/**").permitAll()
                         .anyRequest().authenticated()
                 )

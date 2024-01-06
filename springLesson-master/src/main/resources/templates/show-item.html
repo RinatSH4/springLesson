@@ -6,7 +6,7 @@
   <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
-<div th:replace="/layouts/header :: header"></div>
+<div th:replace="~{/layouts/header :: header}"></div>
 
 <main class="container">
   <div class="items">
@@ -25,6 +25,6 @@
   </form>
 </main>
 
-<div th:replace="/layouts/footer :: footer"></div>
+<div th:replace="~{/layouts/footer :: footer}"></div>
 </body>
 </html>

@@ -1,21 +1,21 @@
-<header class="container" xmlns:th="http://www.thymeleaf.org"
+<header class="container" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
         xmlns:sec="http://www.thymeleaf.org/extras/spring-security" th:fragment="header">
     <span class="logo">PetShop</span>
     <nav>
-        <a href="/">Главная</a>
+        <a th:href="@{/}">Главная</a>
 
         <span sec:authorize="!isAuthenticated()">
-            <a href="/login">Войти</a>
-            <a href="/reg">Зарегистрироваться</a>
+            <a th:href="@{/login}">Войти</a>
+            <a th:href="@{/reg}">Зарегистрироваться</a>
         </span>
 
         <span sec:authorize="isAuthenticated()">
-            <a href="/item/add">Добавить товар</a>
-            <a href="/user">Кабинет</a>
+            <a th:href="@{/item/add}">Добавить товар</a>
+            <a th:href="@{/user}">Кабинет</a>
         </span>
 
         <span sec:authorize="hasAuthority('ADMIN')">
-            <a href="/admin">Панель админа</a>
+            <a th:href="@{/admin}">Панель админа</a>
         </span>
     </nav>
 </header>

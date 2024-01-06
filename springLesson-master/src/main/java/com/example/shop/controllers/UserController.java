@@ -36,6 +36,13 @@ public class UserController {
         return "user";
     }
 
+    @GetMapping("/admin")
+    public String admin(Model model) {
+        Iterable<User> users = userRepository.findAll();
+        model.addAttribute("users", users);
+        return "admin";
+    }
+
     @GetMapping("/reg")
     public String reg(@RequestParam (name = "error", defaultValue = "", required = false) String error,
             Model model) {
@@ -46,6 +53,7 @@ public class UserController {
 
         return "reg";
     }
+
 
     @PostMapping("/reg")
     public String addUser(@RequestParam String username,
