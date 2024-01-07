@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Панель админа</title>
+    <link rel="stylesheet" th:href="@{/main.css}">
+</head>
+<body>
+<div th:replace="~{/layouts/header :: header}"></div>
+<main class="container">
+    <div sec:authorize="hasAuthority('ADMIN')" class="block">
+        <div th:each="user : ${users}">
+            <a th:href="'/adminpanel/user/' + ${user.id}">
+                <h3 th:text="${user.username}" />
+                <p th:text="${user.email}" />
+                <p th:text="${user.id}" />
+            </a>
+            <br>
+        </div>
+    </div>
+</main>
+
+<div th:replace="~{/layouts/footer :: footer}"></div>
+</body>
+</html>

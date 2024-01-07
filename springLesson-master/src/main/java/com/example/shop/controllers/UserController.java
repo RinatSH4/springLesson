@@ -3,23 +3,29 @@ package com.example.shop.controllers;
 import com.example.shop.models.Item;
 import com.example.shop.models.Role;
 import com.example.shop.models.User;
+import com.example.shop.repo.ItemRepository;
 import com.example.shop.repo.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.Collections;
+import java.util.Set;
 
 @Controller
 public class UserController {
 
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private ItemRepository itemRepository;
 
     @Autowired
     private PasswordEncoder passwordEncoder;
@@ -36,11 +42,20 @@ public class UserController {
         return "user";
     }
 
-    @GetMapping("/admin")
-    public String admin(Model model) {
-        Iterable<User> users = userRepository.findAll();
-        model.addAttribute("users", users);
-        return "admin";
+    @GetMapping("/adminpanel")
+    public String adminpanel(Model model) {
+        Iterable<User> user = userRepository.findAll();
+        model.addAttribute("users", user);
+        return "adminpanel";
+    }
+
+    @GetMapping("/adminpanel/user/{id}")
+    public String itemsUser(@PathVariable(value = "id") long user_id, Model model) {
+        User user = userRepository.findById(user_id).orElse(new User());
+        Iterable<Item> items = user.getItems();
+        model.addAttribute("user", user);
+        model.addAttribute("items", items);
+        return "itemsUser";
     }
 
     @GetMapping("/reg")

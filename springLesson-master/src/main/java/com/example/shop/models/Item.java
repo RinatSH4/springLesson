@@ -1,28 +1,20 @@
 package com.example.shop.models;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 
 @Entity
-@Table(name="items")
 public class Item {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
+    private String title, info, image;
+    private short price;
+
     @JoinColumn(name = "user_id")
     @OneToOne(fetch = FetchType.EAGER)
     private User user;
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    private String title, info, image;
 
     public Item(){}
 
@@ -34,7 +26,13 @@ public class Item {
         this.user = user;
     }
 
-    private short price;
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public long getId() {
         return id;
